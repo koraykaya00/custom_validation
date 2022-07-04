@@ -1,0 +1,45 @@
+<div class="container">
+
+  <form [formGroup]="userform" (ngSubmit)="save()">
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input type="text" class="form-control" [ngClass]="userform.get('name').touched && userform.get('name').invalid ? 'border-danger':''"  formControlName="name" placeholder="Name...">
+      <small *ngIf="!userform.get('name').value && userform.get('name').touched" class="text-danger">Please enter name</small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Phone</label>
+      <input type="text" class="form-control" [ngClass]="userform.get('phone').touched && userform.get('phone').invalid ? 'border-danger':''" formControlName="phone" placeholder="Phone...">
+      <small *ngIf="userform.get('phone').value && userform.get('phone').touched && userform.get('phone').invalid" class="text-danger">Please enter a valid phone number</small>
+      <small *ngIf="!userform.get('phone').value && userform.get('phone').touched" class="text-danger">Please enter phone number</small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" [ngClass]="(userform.get('email').invalid && userform.get('email').touched) ? 'border-danger':''" formControlName="email" placeholder="Email...">
+      <small *ngIf="userform.get('email').value && userform.get('email').touched && userform.get('email').invalid" class="text-danger">Please enter a valid e-mail address</small>
+      <small *ngIf="!userform.get('email').value && userform.get('email').touched" class="text-danger">Please enter e-mail address</small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" [ngClass]="userform.get('password').touched && userform.get('password').invalid ? 'border-danger':''" formControlName="password" placeholder="Password...">
+      <small *ngIf="userform.get('password').value && userform.get('password').invalid" class="text-danger">Plase enter a valid password</small>
+      <small *ngIf="!userform.get('password').value && userform.get('password').touched" class="text-danger">Plase enter password</small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">confirmPassword</label>
+      <input type="password" class="form-control" [ngClass]="userform.get('confirmPassword').touched && userform.get('confirmPassword').invalid ? 'border-danger':''" formControlName="confirmPassword" placeholder="confirmPassword...">
+      <small *ngIf="userform.get('confirmPassword').value && userform.get('confirmPassword').invalid" class="text-danger">Plase enter a valid confirmPassword</small>
+      <small *ngIf="!userform.get('confirmPassword').value && userform.get('confirmPassword').touched" class="text-danger">Plase enter confirmPassword</small>
+      <div  *ngIf="userform.errors?.['valuesDoNotMatch']">
+        <strong>Passwords do not match</strong>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
